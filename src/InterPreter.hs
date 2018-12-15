@@ -1,9 +1,11 @@
 module InterPreter where
+import Data.Map
+import InterPreter.Env
 
 data TopOperation =
     Let String |                -- Define variable
     Do String StoreOperation |  -- Do operation
-    Print String                -- Display variable
+    Print Value                 -- Display variable
     deriving Read
 
 data StoreOperation =
@@ -15,3 +17,15 @@ data Value =
     Ref String |                -- Reference variable
     Add Value Value             -- Add Values
     deriving Read
+
+-- extract value
+value :: Value -> Env -> Int
+value (Number v) _ = v
+value (Ref var) env = env ! var
+value (Add v1 v2) env = value v1 env + value v2 env
+
+-- execute an operation
+exec :: TopOperation -> Env -> IO Env
+exec (Let var) env = return $ insert var 0 env   -- Let
+exec (Do var (Is v)) env = return $ insert var (value v env) env
+exec (Print var) env = (print (value var env)) >> return env
