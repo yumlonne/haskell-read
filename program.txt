@@ -1,9 +1,3 @@
-Let "x"
-Let "y"
-Print (Ref "x")
-Do "x" (Is (Number 50))
-Do "y" (Is (Ref "x"))
-Print (Ref "x")
-Print (Ref "y")
-Do "x" (Is (Add (Ref "y") (Number 100)))
-Print (Ref "x")
+Do "cnt" (Is (Number 1))
+Do "loop" (Is (Number 1))
+While "loop" [Print (Ref "cnt"), Do "cnt" (Is (Add (Ref "cnt") (Number 1))), Do "loop" (Is (Le (Ref "cnt") (Number 100)))]
