@@ -1,3 +1,21 @@
-Do "cnt" (Is (Number 1))
-Do "loop" (Is (Number 1))
-While "loop" [Print (Ref "cnt"), Do "cnt" (Is (Add (Ref "cnt") (Number 1))), Do "loop" (Is (Le (Ref "cnt") (Number 100)))]
+[
+    Do "n" (Is (Number 1)),
+    Do "loop" (Is (Number 1)),
+    While "loop" [
+        If (Eq (Mod (Ref "n") (Number 15)) (Number 0)) [
+            Print (Number -15)
+        ] [
+            If (Eq (Mod (Ref "n") (Number 3)) (Number 0)) [
+                Print (Number -3)
+            ] [
+                If (Eq (Mod (Ref "n") (Number 5)) (Number 0)) [
+                    Print (Number -5)
+                ] [
+                    Print (Ref "n")
+                ]
+            ]
+        ],
+        Do "n" (Is (Add (Ref "n") (Number 1))),
+        Do "loop" (Is (Le (Ref "n") (Number 40)))
+    ]
+]

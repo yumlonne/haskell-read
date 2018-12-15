@@ -5,6 +5,6 @@ import InterPreter.Env
 main :: IO ()
 main = do
     file <- readFile "program.txt"
-    let ops = map read (lines file)
+    let ops = read file :: [TopOperation]
     execAll ops InterPreter.Env.init
     return ()
