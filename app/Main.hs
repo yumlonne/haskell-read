@@ -1,6 +1,10 @@
 module Main where
-
-import Lib
+import InterPreter
+import InterPreter.Env
 
 main :: IO ()
-main = someFunc
+main = do
+    file <- readFile "program.txt"
+    let ops = map read (lines file)
+    InterPreter.execAll ops InterPreter.Env.init
+    return ()

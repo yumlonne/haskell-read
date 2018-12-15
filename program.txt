@@ -1,0 +1,9 @@
+Let "x"
+Let "y"
+Print (Ref "x")
+Do "x" (Is (Number 50))
+Do "y" (Is (Ref "x"))
+Print (Ref "x")
+Print (Ref "y")
+Do "x" (Is (Add (Ref "y") (Number 100)))
+Print (Ref "x")
